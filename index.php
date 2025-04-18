@@ -20,7 +20,7 @@ if ($geoData && $geoData['status'] === 'success') {
     }
 } else {
     // Optional: handle API failure (e.g., redirect to Page B by default)
-    header("Location: https://yourdomain.com/");
+    header("Location: https://mylove.com/");
     exit();
 }
 ?>
