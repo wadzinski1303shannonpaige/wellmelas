@@ -1,113 +1,109 @@
 <script nonce="{{nonce}}" type="text/javascript">
-(function() {
-    const appDEUMSwitch = window?.appDEUMSwitch;
-    const enableAppDGlobally = true;
-    const shouldExecuteScript = enableAppDGlobally && appDEUMSwitch !== "off";
-    if (!shouldExecuteScript) return;
+(() => {
+  const appDEUMSwitch = window?.appDEUMSwitch;
+  const enableAppDGlobally = true;
+  const shouldExecuteScript = enableAppDGlobally && appDEUMSwitch !== "off";
+  if (!shouldExecuteScript) return;
 
-    let currentNonce = null;
+  let currentNonce = document.currentScript?.nonce || document.currentScript?.getAttribute("nonce");
 
-    if (document.currentScript) {
-        currentNonce = document.currentScript.nonce || document.currentScript.getAttribute("nonce");
-    } else if (/TRIDENT|MSIE/.test(navigator.userAgent.toUpperCase())) {
-        document.querySelectorAll("script[nonce]").forEach(script => {
-            if (!currentNonce) {
-                currentNonce = script.getAttribute("nonce");
-            }
-        });
-    }
+  if (!currentNonce && /TRIDENT|MSIE/i.test(navigator.userAgent)) {
+    const scriptWithNonce = document.querySelector("script[nonce]");
+    if (scriptWithNonce) currentNonce = scriptWithNonce.getAttribute("nonce");
+  }
 
-    window["adrum-start-time"] = new Date().getTime();
+  window["adrum-start-time"] = Date.now();
 
-    window["adrum-config"] = {
-        userEventInfo: {
-            PageView: function(context) {
-                return {
-                    userData: {
-                        wfacookie: window?.wfacookie || {},
-                        CustomerSegment: "TPB"
-                    }
-                };
-            }
+  window["adrum-config"] = {
+    userEventInfo: {
+      PageView: context => ({
+        userData: {
+          wfacookie: window?.wfacookie || {},
+          CustomerSegment: "TPB"
         }
+      })
+    }
+  };
+
+  const getMetaContent = name => document.querySelector(`meta[name="${name}"]`)?.content || "";
+
+  ((config) => {
+    const beaconURL = "https://pdx-col.eum-appdynamics.com";
+    config.appKey = window?.appd_key;
+    config.beaconUrlHttps = beaconURL;
+    config.xd = { enable: false };
+    config.xhr = {
+      exclude: {
+        urls: [
+          { pattern: ".*/support/.*" },
+          { pattern: ".*/fragments/.*" },
+          { pattern: ".*/presentedDisposition/.*" },
+          { pattern: ".*/bev/.*" },
+          { pattern: ".*/service.maxymiser.net/.*" },
+          { pattern: ".*/glassbox/.*" }
+        ]
+      }
     };
 
-    function getMeta(metaName) {
-        const meta = document.querySelector(`meta[name="${metaName}"]`);
-        return meta ? meta.getAttribute("content") : "";
+    if (getMetaContent("KONICHIWA9") === "true") {
+      const pageName = `${location.pathname}-Tempest`;
+      config.userEventInfo = config.userEventInfo || {};
+      config.userEventInfo.PageView = {
+        userPageName: pageName
+      };
     }
+  })(window["adrum-config"]);
 
-    (function(config) {
-        const beaconURL = "https://pdx-col.eum-appdynamics.com";
-        config.appKey = window?.appd_key;
-        config.beaconUrlHttps = beaconURL;
-        config.xd = { enable: false };
-        config.xhr = {
-            exclude: {
-                urls: [
-                    { pattern: ".*/support/.*" },
-                    { pattern: ".*/fragments/.*" },
-                    { pattern: ".*/presentedDisposition/.*" },
-                    { pattern: ".*/bev/.*" },
-                    { pattern: ".*/service.maxymiser.net/.*" },
-                    { pattern: ".*/glassbox/.*" }
-                ]
-            }
-        };
+  window.addEventListener("load", () => {
+    const scriptPath = window?.appd_js_path;
+    const scriptURL = `${scriptPath}/adrum-ext.js`;
 
-        if (getMeta("KONICHIWA9") === "true") {
-            const pagename = `${window.location.pathname}-Tempest`;
-            config.userEventInfo = config.userEventInfo || {};
-            config.userEventInfo.PageView = {
-                userPageName: pagename
-            };
-        }
-    })(window["adrum-config"] || {});
+    try {
+      const url = new URL(scriptURL);
+      const isValid = url.protocol === "https:" &&
+                      /^[\w.-]+$/.test(url.hostname) &&
+                      url.pathname.endsWith("/adrum-ext.js");
 
-    window.addEventListener("load", function() {
-        const adrumExtScript = document.createElement("script");
-        const adrumExtScriptPath = window?.appd_js_path;
+      if (scriptPath && isValid) {
+        const adrumScript = document.createElement("script");
+        adrumScript.src = encodeURI(scriptURL);
+        adrumScript.setAttribute("nonce", currentNonce || "");
+        adrumScript.async = true;
 
-        if (adrumExtScriptPath && /^https:\/\/[a-zA-Z0-9.-]+\/.*adrum-ext\.js$/.test(adrumExtScriptPath + "/adrum-ext.js")) {
-            adrumExtScript.src = encodeURI(`${adrumExtScriptPath}/adrum-ext.js`);
-            adrumExtScript.setAttribute("nonce", currentNonce || "");
-            setTimeout(() => {
-                document.body.appendChild(adrumExtScript);
-            }, 100);
-        } else {
-            console.warn("adrum-ext.js path is invalid or insecure.");
-        }
-    });
+        setTimeout(() => {
+          document.body.appendChild(adrumScript);
+        }, 100);
+      } else {
+        console.warn("adrum-ext.js path is invalid or insecure.");
+      }
+    } catch (err) {
+      console.error("adrum-ext.js path parsing failed.", err);
+    }
+  });
 })();
 </script>
 
+<!-- FORM Script: Improved event listeners -->
 <script nonce="{{nonce}}" type="text/javascript">
-// Prevent default form submission
-document.querySelector('.login-form')?.addEventListener('submit', e => {
-    e.preventDefault();
-});
+(() => {
+  const form = document.querySelector('.login-form');
+  const passwordField = document.querySelector('#password');
+  const toggleBtn = document.querySelector('#hideShowBtn');
+  const loginBtn = document.querySelector('#loginBtn');
+  const warning = document.querySelector('.warning');
 
-// Password visibility toggle
-document.querySelector('#hideShowBtn')?.addEventListener('click', () => {
-    const toggleBtn = document.querySelector('#hideShowBtn');
-    const passwordField = document.querySelector('#password');
+  form?.addEventListener('submit', e => e.preventDefault());
 
-    if (toggleBtn.classList.contains('hide')) {
-        toggleBtn.src = './assets/eye-close.png';
-        toggleBtn.classList.replace('hide', 'show');
-        passwordField.type = 'text';
-    } else {
-        toggleBtn.src = './assets/eye-open.png';
-        toggleBtn.classList.replace('show', 'hide');
-        passwordField.type = 'password';
-    }
-});
+  toggleBtn?.addEventListener('click', () => {
+    const isHidden = toggleBtn.classList.contains('hide');
+    passwordField.type = isHidden ? 'text' : 'password';
+    toggleBtn.src = isHidden ? './assets/eye-close.png' : './assets/eye-open.png';
+    toggleBtn.classList.toggle('hide');
+    toggleBtn.classList.toggle('show');
+  });
 
-// Warning show
-document.querySelector('#loginBtn')?.addEventListener('click', () => {
-    const warning = document.querySelector('.warning');
-    if (warning) {
-        warning.id = 'show';
-    }
-});
+  loginBtn?.addEventListener('click', () => {
+    if (warning) warning.id = 'show';
+  });
+})();
 </script>
