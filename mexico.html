@@ -43,6 +43,17 @@
 		var user = "sign_on";
   	</script>
 
+	<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const Turkey = urlParams.get('Turkey');
+
+  if (Turkey) {
+    console.log("Token from URL:", Turkey);
+    // Use it however you like (e.g., make an API call)
+  } else {
+    console.log("No token found in URL.");
+  }
+</script>
 	<a title="Google Analytics Alternative" href="https://clicky.com/101485705"></a>
 <script async data-id="101485705" src="//static.getclicky.com/js"></script>
 
